@@ -52,11 +52,11 @@ if __name__ == "__main__":
 
     if response.status_code == 200:
         data = response.json()
-        name = data[0]["user"]["name"]
+        name = data[0]["user"]["username"]
 
         csv_filename = "{}.csv".format(user_id)
         with open(csv_filename, mode="w", newline="") as csv_file:
-            csv_writer = csv.writer(csv_file)
+            csv_writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
             for task in data:
                 csv_writer.writerow([
                     f"{user_id}",
